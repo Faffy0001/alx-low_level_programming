@@ -1,42 +1,28 @@
-#include <limits.h>
 #include "main.h"
 #include <stdio.h>
 
 /**
- * main - check the code.
+ * print_sign - prints the sign of a number
+ * @n: The number to be checked
  *
- * Return: Always 0.
- *
+ * Return: 1 if n is greater than 0, 0 if n is 0, -1 if n is less than 0
  */
-
 int print_sign(int n)
 {
-	if (n > 0)
-	{
-		printf("+\n");
-		return 1;
-	}
-	else if (n == 0)
-	{
-		printf("0\n");
-		return 0;
-	}
-	else
-	{
-		printf("-\n");
-		return -1;
-	}
+  if (n > 0)
+  {
+    printf("+\n");
+    return (1);
+  }
+  else if (n == 0)
+  {
+    printf("0\n");
+    return (0);
+  }
+  else
+  {
+    printf("-\n");
+    return (-1);
+  }
 }
 
-int main()
-{
-  int x = -5;
-  int y = 0;
-  int z = 10;
-
-  print_sign(x);  /* prints '-' */
-  print_sign(y);  /* prints '0' */
-  print_sign(z);  /* prints '+' */
-
-  return 0;
-}
