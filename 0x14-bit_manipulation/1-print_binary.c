@@ -1,21 +1,16 @@
 #include "main.h"
 
 /**
- * Print the binary presentation of a number
- * @n: unsigned int
- * Return:0
+ * Print the binary presentation of a number. 
+ * @n: unsigned int 
+ * Return: binary
  */
 
-
 void print_binary(unsigned long int n)
-{
-	int 1;
 
-	for (i = (sizeof(unsigned long int) * 8) -1; 1 >= 0; i--)
-	{
-		if (n & (1ul << i))
-			_putchar('1');
-		else
-			_putchar('0')
-	}
+{
+	if (n > 1) /*right shift bitwise operator*/
+		print_binary(n >> 1);
+
+	_putchar((n & 1) + '0');
 }
