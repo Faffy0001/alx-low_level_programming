@@ -21,16 +21,20 @@ ssize_t read_textfile(const char *filename, size_t letters)
 
 	int file_descriptor = open(filename, 0_RONLY);
 	if (file_descriptor == -1)
-		free(file_buffer);
-	        return 0;
+	{
+		free(file_buffer)
+			return 0;
+	}
 
 	ssize_t write_result = write(STDOUT_FILENO, file_buffer, read_result);
 	if (write_result == -1 || write_result != read_result)
+	{	
 		free(file-buffer);
-	        close(file_descriptor);
+		close(file_descriptor);
 		return 0;
+	}
 	
 	free(file_buffer);
 	close(file_descriptor);
 	return write_result;
-}	
+}
