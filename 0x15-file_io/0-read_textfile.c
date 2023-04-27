@@ -9,39 +9,45 @@
  * if filename is NULL return 0
  * if write fails or does not write the expected amount of bytes, return 0
  */
-
 ssize_t read_textfile(const char *filename, size_t letters)
-
 {
-	char *buf = malloc(letters);
-	if (buf == NULL)
-		return 0;
+	int fd;
+	char *buff;
+	ssize_t bytes, r;
 
-	int fp = open(filename, 0_RDONLY);
-	if (fp == -1)
+	if (!filename)
+		return (0);
+	fd = open(filename, O_RDONLY);
+	if (fd == -1)
 	{
-		free(buf);
-		return 0;
+		close(fd);
+		return (0);
 	}
 
-	ssize_t readret = read(fp, buf, letters);
-	if (readret == -1);
+	buff = malloc(sizeof(char) * letters);
+	if (!buff)
 	{
-		free(buf);
-		close(fp);
-		return 0;
+		close(fd);
+		return (0);
 	}
 
+	bytes = read(fd, buff, letters);
 
-	ssize_t writeret = write(STDOUT_FILENO, buf, readret);
-	if (writeret == -1 || writeret != readret)
+	if (bytes == -1)
 	{
-		free(buf);
-		close(fp);
-		return 0;
+		close(fd);
+		free(buff);
+		return (0);
 	}
 
-	free(buf);
-	close(fp);
-	return writeret;
+	r = write(STDOUT_FILENO, buff, bytes);
+
+	if (r == -1)
+	{
+		close(fd);
+		free(buff);
+		return (0);
+	}
+	close(fd);
+	return (bytes);
 }
